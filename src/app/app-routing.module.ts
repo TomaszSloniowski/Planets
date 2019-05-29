@@ -1,7 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { PlanetsListComponent } from './planets-list/planets-list.component';
+import { PlanetDetailsComponent } from './planet-details/planet-details.component';
+import { PlanetsResolver } from './PlanetsResolver';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: 'planets-list', component: PlanetsListComponent, resolve: {
+    planets: PlanetsResolver,
+  }},
+  { path: 'planet-details/:id', component: PlanetDetailsComponent },
+  { path: '', redirectTo: 'planets-list', pathMatch: 'full' },
+ /* { path: '404', component: Page404Component, data: {message: 'User not found!'} },
+  { path: '**', redirectTo: '404' } */
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
