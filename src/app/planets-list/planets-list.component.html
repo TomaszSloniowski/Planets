@@ -1,15 +1,15 @@
-
-    <ul>
-        <li *ngFor="let planet of PlanetsList">
-          Name: {{planet.name}} <br>
-          diameter: {{planet.diameter}} <br>
-          Climate: {{planet.climate}} <br>
-          Terrain: {{planet.terrain}} <br>
-          Surface: {{planet.surface_water}} <br>
-          Population: {{planet.population}} <br>
-          Gravity: {{planet.gravity}} <br>
-          Orbital period: {{planet.orbital_period}}<br><br>
-        </li>
-    </ul>
-
-
+<div *ngFor="let planet of PlanetsList">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>{{planet.name}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      Diameter: {{planet.diameter}}
+      Climate: {{planet.climate}}
+      Orbital period: {{planet.orbital_period}}
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>DETAILS</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
