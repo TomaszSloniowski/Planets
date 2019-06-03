@@ -1,29 +1,92 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 .body {
-    margin: 0px;
-    padding: 0px;
-    height: 100%;
-  }
-  .html {
-    margin: 0px;
-    padding: 0px;
-    height: 100%;
-  }
-  .main-container {
-    display: grid;
-    grid-template-columns: 1fr, 1fr;
-    grid-template-rows: 200px, auto;
-    justify-content: center;
-  }
-  .menu-container {
-    display: flex;
-    grid-column: 1/3;
-    justify-content: space-between
-  }
-  .planets-container {
-    display: flex;
-    grid-column: 1/3;
-    justify-content: center;
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+}
 
-  }
+.html {
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+}
+
+.main-container {
+  display: grid;
+  grid-template-columns: 1fr, 1fr;
+  grid-template-rows: 300px, auto;
+  justify-content: center;
+  padding: 10px;
+}
+
+.menu-container {
+  display: flex;
+  grid-column: 1/3;
+  justify-content: start;
+  padding: 15px 0px 10px 0px;
+}
+
+
+.planets-container {
+  display: flex;
+  grid-column: 1/3;
+  justify-content: space-evenly;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+mat-card.planet__card {
+  margin: 15px;
+  min-width: 250px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+ul {
+  list-style: none;
+}
+
+.planet__description {
+  font-family: Roboto, Helvetica Neue, sans-serif;
+}
+
+.planet__description__header {
+  padding: 10px;
+}
+
+.planet__description__table {
+  border-collapse: collapse;
+  background-color: white;
+}
+
+td {
+  padding: 10px 20px 10px 20px;
+  text-align: left;
+  font-size: 0.9rem;
+  font-weight: 400;
+  border-bottom: solid 1px darkgray;
+  border-top: solid 1px darkgray;
+  min-width: 200px;
+}
+
+.bottom__nav {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+
+.bottom__nav__item {
+  font-family: Roboto, Helvetica Neue, sans-serif;
+  font-size: 1rem;
+  font-weight: 100;
+
+}
+.icons {
+padding-right: 15px;
+font-size: 1rem;
+
+}

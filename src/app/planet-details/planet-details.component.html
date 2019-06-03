@@ -1,3 +1,42 @@
-<p>
-  planet-details works!
-</p>
+
+<div class="planet__description" *ngIf="planet$ | async as planet">
+  <h3 class="planet__description__header">{{planet.name}}</h3>
+  <table class="planet__description__table">
+    <tr>
+      <td>Diameter</td>
+      <td>{{planet.diameter}}</td>
+    </tr>
+    <tr>
+      <td>Rotation period</td>
+      <td>{{planet.rotation_period}}</td>
+    </tr>
+    <tr>
+      <td>Orbital period</td>
+      <td>{{planet.orbital_period}}</td>
+    </tr>
+    <tr>
+      <td>Climate</td>
+      <td>{{planet.climate}}</td>
+    </tr>
+    <tr>
+      <td>Terrain</td>
+      <td>{{planet.terrain}}</td>
+    </tr>
+    <tr>
+      <td>Surface water</td>
+      <td>{{planet.surface_water}}</td>
+    </tr>
+    <tr>
+      <td>Population</td>
+      <td>{{planet.population}}</td>
+    </tr>
+    <tr>
+      <td>Url</td>
+      <td>{{planet.url}}</td>
+    </tr>
+  </table>
+</div>
+
+<nav class="bottom__nav">
+  <a [routerLink]="['/planets-list']" routerLinkActive="active" class="bottom__nav__item"><i class="material-icons icons">arrow_back</i>back </a>
+</nav>

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+//import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+//import { Planet } from '../Planet';
+import { PlanetsService } from '../planets.service';
 
 @Component({
   selector: 'app-planets-list',
@@ -9,13 +12,36 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PlanetsListComponent implements OnInit {
 
-  public PlanetsList: any;
+ // planets$: Observable<Planet[]>;
 
-  constructor(private route: ActivatedRoute) { }
+  private selectedId: number;
+
+  public planets$ : any;
+  public id: number;
+
+  constructor(
+    private route: ActivatedRoute,
+    private service: PlanetsService,
+    private router: Router,
+    private data: PlanetsService
+    ) { }
 
   ngOnInit() {
-      this.PlanetsList = this.route.snapshot.data.planets.results;
-      console.log('planety:', this.PlanetsList);
-  }
 
+    this.planets$ = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => {
+          this.selectedId = +params.get('id');
+        return this.service.getPlanets();
+      })
+    );
+
+    /*
+    this.Planets = this.route.snapshot.data.planets.results;
+
+    let i: number;
+    for (i = 0; i < 10; i++) {
+      this.Planets[i].id=i+1;
+    } */
+
+}
 }

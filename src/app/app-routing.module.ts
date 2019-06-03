@@ -8,10 +8,9 @@ const routes: Routes = [
   { path: 'planets-list', component: PlanetsListComponent, resolve: {
     planets: PlanetsResolver,
   }},
-  { path: 'planet-details/:id', component: PlanetDetailsComponent },
+  { path: 'planet-details/:id', component: PlanetDetailsComponent,  },
   { path: '', redirectTo: 'planets-list', pathMatch: 'full' },
- /* { path: '404', component: Page404Component, data: {message: 'User not found!'} },
-  { path: '**', redirectTo: '404' } */
+  { path: '**', redirectTo: 'planets-list' }
 ];
 
 @NgModule({
