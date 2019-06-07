@@ -1,4 +1,7 @@
-
+<nav class="bottom__nav">
+    <a [routerLink]="['/planets-list']" routerLinkActive="active" class="bottom__nav__item"><i class="material-icons icons">arrow_back</i>back </a>
+  </nav>
+  
 <div class="planet__description" *ngIf="planet$ | async as planet">
   <h3 class="planet__description__header">{{planet.name}}</h3>
   <table class="planet__description__table">
@@ -37,6 +40,3 @@
   </table>
 </div>
 
-<nav class="bottom__nav">
-  <a [routerLink]="['/planets-list']" routerLinkActive="active" class="bottom__nav__item"><i class="material-icons icons">arrow_back</i>back </a>
-</nav>

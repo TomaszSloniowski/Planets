@@ -9,6 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { NgMatSearchBarModule } from 'ng-mat-search-bar';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -42,7 +44,8 @@ import { PlanetsResolver } from './PlanetsResolver';
     MatCardModule,
     MatToolbarModule,
     MatIconModule,
-    NgMatSearchBarModule
+    NgMatSearchBarModule,
+    MatPaginatorModule
   ],
   providers: [
     PlanetsResolver
