@@ -40,7 +40,7 @@
 
 mat-card.planet__card {
   margin: 60px;
-  min-width: 400px;
+  min-width: 200px;
 
 }
 
@@ -88,9 +88,10 @@ td {
   font-weight: 100;
 
 }
+
 .icons {
-padding-right: 15px;
-font-size: 1rem;
+  padding-right: 15px;
+  font-size: 1rem;
 }
 
 /*--------- Paginator ---------*/
@@ -107,4 +108,8 @@ font-size: 1rem;
 
 div.mat-paginator-container {
   padding: 50px 150px 30px 150px;
+}
+
+td.mat-cell {
+  padding: 50px;
 }

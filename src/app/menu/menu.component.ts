@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { PLANETS } from '../Planets-mock'
 import { MenuService } from './menu.service';
+import { PlanetsService } from '../planets.service';
+import { Planet } from '../Planet';
 
 @Component({
   selector: 'app-menu',
@@ -14,6 +16,7 @@ export class MenuComponent implements OnInit {
 
   Planets: any;
   PlanetsNames: any;
+  planets: Planet[] = [];
 
   planet: string;
   selectedPlanet: string;
@@ -24,9 +27,13 @@ export class MenuComponent implements OnInit {
 
   constructor(
     private data: MenuService,
+    private service: PlanetsService,
   ) { }
 
   ngOnInit() {
+    this.service.getPlanetsHttp().subscribe((planets) => {
+      this.planets = planets;
+    });
     this.filteredOptions = this.myControl.valueChanges
       .pipe(
         startWith(''),
@@ -41,6 +48,7 @@ export class MenuComponent implements OnInit {
   }
 
   getPlanetsNames() {
+
     this.Planets = PLANETS;
     this.PlanetsNames = [];
     let i: number;

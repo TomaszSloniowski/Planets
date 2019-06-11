@@ -1,4 +1,38 @@
 <app-menu></app-menu>
+
+<mat-grid-list [cols]="breakpoint" rowHeight="4:5" (window:resize)="onResize($event)">
+  <mat-grid-tile *ngFor="let planet of pagedList">
+      <div *ngIf="messagePlanet == '??' || messagePlanet == 'Search all'">
+      <mat-card class="planet__card">
+          <mat-card-header>
+              <mat-card-title>{{planet.name}}</mat-card-title>
+            </mat-card-header>
+            <a [routerLink]="['/planet-details', planet.id]" routerLinkActive="active"
+            [class.selected]="planet.id === selectedId" class="item  item__menu__link">
+            <button mat-button>DETAILS</button>
+          </a>
+      </mat-card>
+    </div>
+    <div *ngIf="messagePlanet == planet.name">
+        <mat-card class="planet__card">
+            <mat-card-header>
+                <mat-card-title>{{planet.name}}</mat-card-title>
+              </mat-card-header>
+              <a [routerLink]="['/planet-details', planet.id]" routerLinkActive="active"
+              [class.selected]="planet.id === selectedId" class="item  item__menu__link">
+              <button mat-button>DETAILS</button>
+            </a>
+        </mat-card>
+      </div>
+ 
+  </mat-grid-tile>
+</mat-grid-list>
+
+<mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+  (page)="pageEvent = OnPageChange($event)">
+</mat-paginator>
+
+<!--
 <div class="planets-container">
   <div *ngFor="let planet of planets$ | async">
 
@@ -37,15 +71,15 @@
 
 </div>
 
-<!--
+
 <div class="paginator">
   <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
     (page)="pageEvent = $event">
   </mat-paginator>
 </div>
+
+
 -->
-
-
 
 <!---------------------  API version -------------------
 <div class="planets-container">
