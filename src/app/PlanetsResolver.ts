@@ -7,8 +7,7 @@ import { Observable } from 'rxjs';
 export class PlanetsResolver implements Resolve<any> {
   constructor(private apiService: PlanetsService) { }
 
-
   resolve(): Observable<any> {
-    return this.apiService.getPlanets();
+    return this.apiService.getPlanetsHttp();
   }
 }

@@ -13,6 +13,9 @@ import { Observable } from 'rxjs';
 
 export class PlanetsService {
 
+  planets: any;
+  planetsNames = [];
+
   constructor(private http: HttpClient) { }
 
   getPlanets() { return of(PLANETS); }
@@ -29,9 +32,31 @@ export class PlanetsService {
   addPlanetsIndex(planets: any) {
     let i: number;
     for (i = 0; i < 10; i++) {
-      planets.results[i].id=i+1
+      planets[i].id=i+1
     }
     return planets.results;
   }
+
+  getPlanetsNames(planets: any) {
+    this.planetsNames = [];
+    let i: number;
+    for (i = 0; i < 10; i++) {
+    this.planetsNames.push(planets[i].name);
+    }
+    this.planetsNames.push("Search all");
+    return this.planetsNames;
+
+  }
+/*
+  getPlanetsNames(planets: any) {
+    this.getPlanetsHttp().subscribe((planets) => {
+    this.planets = planets;
+
+    let i: number;
+    for (i = 0; i < 10; i++) {
+      this.planetsNames[i] = planets.results[i].name;
+    }
+    return this.planetsNames
+  }*/
 
 }

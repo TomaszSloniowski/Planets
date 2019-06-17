@@ -5,7 +5,7 @@
       <div *ngIf="messagePlanet == '??' || messagePlanet == 'Search all'">
       <mat-card class="planet__card">
           <mat-card-header>
-              <mat-card-title>{{planet.name}}</mat-card-title>
+              <mat-card-title>{{planet}}</mat-card-title>
             </mat-card-header>
             <a [routerLink]="['/planet-details', planet.id]" routerLinkActive="active"
             [class.selected]="planet.id === selectedId" class="item  item__menu__link">
@@ -13,10 +13,10 @@
           </a>
       </mat-card>
     </div>
-    <div *ngIf="messagePlanet == planet.name">
+    <div *ngIf="messagePlanet == planet">
         <mat-card class="planet__card">
             <mat-card-header>
-                <mat-card-title>{{planet.name}}</mat-card-title>
+                <mat-card-title>{{planet}}</mat-card-title>
               </mat-card-header>
               <a [routerLink]="['/planet-details', planet.id]" routerLinkActive="active"
               [class.selected]="planet.id === selectedId" class="item  item__menu__link">
@@ -24,7 +24,7 @@
             </a>
         </mat-card>
       </div>
- 
+
   </mat-grid-tile>
 </mat-grid-list>
 

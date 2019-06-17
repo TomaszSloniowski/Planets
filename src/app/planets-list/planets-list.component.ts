@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Planet } from '../Planet';
 import { PlanetsService } from '../planets.service';
 import { MenuService } from '../menu/menu.service';
 import { PageEvent } from '@angular/material/paginator';
-
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-planets-list',
@@ -13,9 +12,11 @@ import { PageEvent } from '@angular/material/paginator';
 export class PlanetsListComponent implements OnInit {
 
 
-  planets: Planet[] = [];
-  planetsList: Planet[] = [];
-  pagedList: Planet[] = [];
+  //planets: Planet[] = [];
+
+  planetsList = [];
+  pagedList = [];
+  planetsNames = [];
   breakpoint: number = 3;  //to adjust to screen
   // MatPaginator Inputs
   length: number = 0;
@@ -24,6 +25,7 @@ export class PlanetsListComponent implements OnInit {
 
  // private selectedId: number;
   public id: number;
+  planets: any;
 
   messagePlanet: string;
   selectedPlanet: string;
@@ -31,22 +33,29 @@ export class PlanetsListComponent implements OnInit {
   constructor(
     private service: PlanetsService,
     private data: MenuService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.service.getPlanetsHttp().subscribe((planets) => {
-      this.planets = planets;
-      this.planets = this.service.addPlanetsIndex (this.planets)
+    this.planets = this.route.snapshot.data.planets.results
+    console.log('Planets data: ', this.planets);
+    this.service.addPlanetsIndex(this.planets);
+    console.log('Indexed planets: ', this.planets);
+    this.planetsNames = this.service.getPlanetsNames(this.planets);
+    console.log('Planets names: ', this.planetsNames);
+
 
           /*------------- Pagination -------------------*/
-          this.planetsList = this.planets;
+          this.planetsList = this.planetsNames;
+          console.log('planetsList: ', this.planetsList)
           this.breakpoint = (window.innerWidth <= 800) ? 1 : 3;
           this.pagedList = this.pagedList.slice(0, 3);
           this.length = this.planetsList.length;
         /*----------------------------------------------*/
 
         this.data.currentMessagePlanet.subscribe(messagePlanet => this.messagePlanet = messagePlanet);  // Data from search tab
-    });
+        console.log('selected planet: ', this.messagePlanet)
+
     }
 
   /*------------- Pagination -------------------*/
@@ -63,10 +72,5 @@ export class PlanetsListComponent implements OnInit {
     this.breakpoint = (event.target.innerWidth <= 800) ? 1 : 3;
   }
   /*--------------------------------------------*/
-
-
-  /*------------- Resolver version ----------------
-    this.Planets = this.route.snapshot.data.planets.results;
-  */
 
 }

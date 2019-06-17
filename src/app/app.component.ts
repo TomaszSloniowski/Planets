@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Planets';
+
+ /* gotoPlanets() {
+    this.router.navigate(['planets']);
+  } */
 }

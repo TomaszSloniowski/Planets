@@ -53,6 +53,7 @@ import { PlanetsListComponent } from './planets-list/planets-list.component';
 import { PlanetDetailsComponent } from './planet-details/planet-details.component';
 import { MenuComponent } from './menu/menu.component';
 import { PlanetsResolver } from './PlanetsResolver';
+import { PlanetsComponent } from './planets/planets.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { PlanetsResolver } from './PlanetsResolver';
     PlanetsListComponent,
     PlanetDetailsComponent,
     MenuComponent,
+    PlanetsComponent,
 
    ],
   imports: [
