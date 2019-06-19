@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Planet } from '../Planet';
+import { Location } from '@angular/common'
+import { ActivatedRoute } from '@angular/router';
 import { PlanetsService } from '../planets.service';
-
 
 @Component({
   selector: 'app-planet-details',
@@ -13,22 +10,36 @@ import { PlanetsService } from '../planets.service';
 })
 export class PlanetDetailsComponent implements OnInit {
 
-  planet$: Observable<Planet>;
-
-  public planet: any;
-  public id: string;
+  planets: any;
+  planetsNames = [];
+  planet = [];
+  planetName: string;
 
   constructor(
     private route: ActivatedRoute,
-    private service: PlanetsService
+    private service: PlanetsService,
+    private location: Location
   ) { }
 
   ngOnInit() {
+    this.service.getPlanetsHttp().subscribe((planets) => {
+      this.planets = planets;
+      this.planetName = this.route.snapshot.paramMap.get('name')
+      this.planet = this.getPlanet(this.planetName, this.planets.results);
+    });
+  }
 
-    this.planet$ = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) =>
-        this.service.getPlanet(params.get('id')))
-        );
+  getPlanet(planetName, planets) {
+    for (let i = 0; i < planets.length; i++) {
+      if (planets[i].name == planetName) {
+        console.log('this planet: ', planets[i]);
+        return planets[i];
+      }
+    }
+  }
+
+  goBack() {
+    this.location.back();
   }
 }
 

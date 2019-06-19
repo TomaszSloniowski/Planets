@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-//import { PLANETS } from '../Planets-mock'
 import { MenuService } from './menu.service';
 import { PlanetsService } from '../planets.service';
-import { Planet } from '../Planet';
 
 @Component({
   selector: 'app-menu',
@@ -16,7 +14,6 @@ export class MenuComponent implements OnInit {
 
   planetsNames = [];
   planets: any;
-
   planet: string;
   selectedPlanet: string;
 
@@ -30,35 +27,26 @@ export class MenuComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-   this.service.getPlanetsHttp().subscribe((planets) => {
+    this.service.getPlanetsHttp().subscribe((planets) => {
       this.planets = planets;
       this.options = this.service.getPlanetsNames(this.planets.results);
+      this.options.push("Search all");
       this.filteredOptions = this.myControl.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => this._filter(value))
-      );
+        .pipe(
+          startWith(''),
+          map(value => this._filter(value))
+        );
     });
-    }
+  }
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 
- /* getPlanetsNames() {
-
-    this.Planets = PLANETS;
-    this.PlanetsNames = [];
-    let i: number;
-    for (i = 0; i < 10; i++) {
-      this.PlanetsNames.push(this.Planets[i].name);
-    }
- 
-  } */
   onSubmit() {
-  this.selectedPlanet = this.myControl.value
-  this.data.changePlanet(this.selectedPlanet);
-}
+    this.selectedPlanet = this.myControl.value
+    this.data.changePlanet(this.selectedPlanet);
+  }
 }
 
